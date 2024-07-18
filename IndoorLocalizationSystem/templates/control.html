@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <ul class="nav_ul">
+        <li class="nav_li"><a onclick="window.location.href = 'localize' ; ">Localize Robot</a></li>
+        <li class="nav_li"><a onclick="window.location.href = 'control' ; ">Control Section</a></li>
+        <li class="nav_li"><a onclick="window.location.href = '/' ; ">Home page</a></li>
+    </ul>
+
+    <form method="post">
+         <div class='text_control'>
+             <h3>Set target position</h3>
+             <input type="number" placeholder={{ aruco_markers }} name="target_position_set" id="target_position_set">
+             <button type="submit">Set target</button>
+         </div>
+    </form>
+</body>
+</html>

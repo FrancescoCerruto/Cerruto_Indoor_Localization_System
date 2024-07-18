@@ -29,26 +29,27 @@ ARUCO_DICT = {
 }
 
 aruco_type = "DICT_4X4_100"
-id = 16
 
+aruco_ids = [1, 2, 3, 4, 16]
 arucoDict = cv2.aruco.getPredefinedDictionary(ARUCO_DICT[aruco_type])
-
 tag_size = 100
-# aruco code --> image black and white --> array of bit
-tag = np.zeros((tag_size, tag_size, 1), dtype="uint8")
 
-# draw the ArUco tag
-# arucoDict: The ArUco dictionary loaded by cv2.aruco.getPredefinedDictionary.
-# This function tells OpenCV which ArUco dictionary we are using, how to draw the tags, etc.
-# id: The ID of the ArUco tag we are drawing. This ID must be a valid tag ID in arucoDict.
-# tag_size: The size of the ArUco tag that will be drawn. This value should match the width/height of the
-# NumPy array we initialized.
-# tag: The NumPy array that we are drawing the ArUco tag on.
-# 1: The number of “border bits” to pad the tag with. If we generate a 5×5 tag,
-# then setting borderBits=1will output a 6×6 image with a 1 bit border surrounding the 5×5 region,
-# making the tag easier to detect and read. Typically you should set borderBits=1
-cv2.aruco.generateImageMarker(arucoDict, id, tag_size, tag, 1)
+for id in aruco_ids:
+	# aruco code --> image black and white --> array of bit
+	tag = np.zeros((tag_size, tag_size, 1), dtype="uint8")
 
-# save the tag
-tag_name = "{}_{}.png".format(aruco_type, id)
-cv2.imwrite(tag_name, tag)
+	# draw the ArUco tag
+	# arucoDict: The ArUco dictionary loaded by cv2.aruco.getPredefinedDictionary.
+	# This function tells OpenCV which ArUco dictionary we are using, how to draw the tags, etc.
+	# id: The ID of the ArUco tag we are drawing. This ID must be a valid tag ID in arucoDict.
+	# tag_size: The size of the ArUco tag that will be drawn. This value should match the width/height of the
+	# NumPy array we initialized.
+	# tag: The NumPy array that we are drawing the ArUco tag on.
+	# 1: The number of “border bits” to pad the tag with. If we generate a 5×5 tag,
+	# then setting borderBits=1will output a 6×6 image with a 1 bit border surrounding the 5×5 region,
+	# making the tag easier to detect and read. Typically you should set borderBits=1
+	cv2.aruco.generateImageMarker(arucoDict, id, tag_size, tag, 1)
+
+	# save the tag
+	tag_name = "{}_{}.png".format(aruco_type, id)
+	cv2.imwrite(tag_name, tag)

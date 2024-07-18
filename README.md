@@ -18,7 +18,7 @@ Gyroscope: MPU6050
 
 ## Resource
 
-Elegoo Smart car code
+Elegoo Smart car code and documentation
 
 **https://www.elegoo.com/blogs/arduino-projects/elegoo-smart-robot-car-kit-v4-0-tutorial**
 
@@ -43,6 +43,10 @@ Python scripts to generate and detect (from video) ArUco marker
 ### Elegoo_Documentation folder
 
 Documentation given by Elegoo
+
+### IndoorLocalizationSystem
+
+Web server python to control the device
 
 ### Original_Arduino_Code folder
 

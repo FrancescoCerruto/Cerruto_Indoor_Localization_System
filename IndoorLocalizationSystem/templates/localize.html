@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Localize</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <ul class="nav_ul">
+        <li class="nav_li"><a onclick="window.location.href = 'localize' ; ">Localize Robot</a></li>
+        <li class="nav_li"><a onclick="window.location.href = 'control' ; ">Control Section</a></li>
+        <li class="nav_li"><a onclick="window.location.href = '/' ; ">Home page</a></li>
+    </ul>
+
+    <div class="text_localize">
+        <h3 for="status">State</h3>
+         <input type="text" placeholder="status" name="status" id="status" readonly value={{ state }}>
+
+         <h3 for="last_position">Last position</h3>
+         <input type="number" placeholder="last_position" name="last_position" id="last_position" readonly value = {{ last_position }}>
+
+         <h3 for="target_position">Target position</h3>
+         <input type="number" placeholder="target_position" name="target_position" id="target_position" readonly value = {{ target_position }}>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            function update(){
+                $.get("/update_robot_status", function(data){
+                    console.log(data)
+                    console.log(typeof data[0])
+                    document.getElementById('status').value = data[0]
+                    document.getElementById('last_position').value = new Number(data[1])
+                    document.getElementById('target_position').value =  new Number(data[2])
+                });
+            }
+            update()
+            var intervalId = setInterval(function() {
+                update()
+            }, 1000);
+
+        </script>
+    </div>
+    <div>
+          <img src = "{{ url_for('scene_view') }}" width="50%"/>
+          <img src = "{{ url_for('robot_view') }}" width="50%"/>
+    </div>
+</body>
+</html>
